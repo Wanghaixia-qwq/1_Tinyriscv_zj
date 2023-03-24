@@ -1,39 +1,37 @@
-// +FHDR----------------------------------------------------
-//                   Copyright (c) 2023 
-//                    ALL RIGHTS RESERVED
-// ---------------------------------------------------------
-// Filename         : pc_reg.v
-// Author           : zj
-// Creater On       : 2023-03-24 11:05
-// Last Modifying   : 
-// ---------------------------------------------------------
-// Description      : 
+// +FHDR----------------------------------------------------------------------------
+//                 Copyright (c) 2022 
+//                       ALL RIGHTS RESERVED
+// ---------------------------------------------------------------------------------
+// Filename      : pc_reg.v
+// Author        : Rongye
+// Created On    : 2022-03-21 20:17
+// Last Modified : 2022-03-30 05:17
+// ---------------------------------------------------------------------------------
+// Description   : Update the current pc value 
 //
-//
-// -FHDR----------------------------------------------------
-`include "defines.v"
+// -FHDR----------------------------------------------------------------------------
+`include "rvseed_defines.v"
 
-module pc_reg(
-    input                           clk,            // system clock
-    input                           rst_n,          //active low reset
-    output reg                      ena,            //system enable
-    input       [`CPU_WIDTH-1:0]    next_pc,        // next pc addr
-    output reg  [`CPU_WIDTH-1:0]    curr_pc         // current pc addr
+module pc_reg (
+    input                       clk,     // system clock
+    input                       rst_n,   // active low reset
+    output reg                  ena,     // system enable
+    input      [`CPU_WIDTH-1:0] next_pc, // next pc addr
+    output reg [`CPU_WIDTH-1:0] curr_pc  // current pc addr
 );
 
-always @(posedge clk or negedge rst_n) begin
+always @ (posedge clk or negedge rst_n) begin
     if(~rst_n)
         ena <= 1'b0;
     else
-        ena <= 1'b1;
+        ena <= 1'b1;      
 end
 
-// pc addr更新
-always @(posedge clk or negedge rst_n) begin
+always @ (posedge clk or negedge rst_n) begin
     if(~rst_n)
-        curr_pc <= `CPU_WIDTH'b0;// 回到第一条指令的位置
+        curr_pc <= `CPU_WIDTH'b0;
     else
         curr_pc <= next_pc;
-end
+end    
 
 endmodule
