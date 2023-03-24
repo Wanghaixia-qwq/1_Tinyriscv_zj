@@ -1,2 +1,4 @@
 # 1_Tinyriscv_zj
-My first riscv.
+
+This project documents the cpu of RISCV designed from 0 to 1.
+
