@@ -1,0 +1,45 @@
+[*]
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Wed Apr 13 03:00:31 2022
+[*]
+[dumpfile] "/home/eda/Project/rvseed_3/tb/sim_out.vcd"
+[dumpfile_mtime] "Wed Apr 13 03:00:15 2022"
+[dumpfile_size] 116609
+[savefile] "/home/eda/Project/rvseed_3/tb/rvseed_3.gtkw"
+[timestart] 0
+[size] 1835 871
+[pos] -67 -67
+*-20.541510 3370000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 223
+[signals_width] 244
+[sst_expanded] 1
+[sst_vpaned_height] 521
+@28
+tb_rvseed.clk
+tb_rvseed.rst_n
+tb_rvseed.ena
+@24
+tb_rvseed.branch
+@28
+tb_rvseed.zero
+tb_rvseed.jump
+@22
+tb_rvseed.curr_pc[31:0]
+tb_rvseed.next_pc[31:0]
+tb_rvseed.imm[31:0]
+tb_rvseed.inst[31:0]
+@820
+tb_rvseed.inst_name[39:0]
+@22
+tb_rvseed.alu_op[3:0]
+@29
+tb_rvseed.alu_src_sel[1:0]
+@28
+tb_rvseed.imm_gen_op[2:0]
+tb_rvseed.reg_wen
+@24
+tb_rvseed.reg_waddr[4:0]
+tb_rvseed.reg1_raddr[4:0]
+tb_rvseed.reg2_raddr[4:0]
+[pattern_trace] 1
+[pattern_trace] 0
