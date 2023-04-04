@@ -14,10 +14,10 @@
 `include "rvseed_defines.v"
 
 module ctrl(
-    input               [`CPU_WIDTH-1:0]    inst,           // instruction input
+    input               [`CPU_WIDTH-1:0]    inst,           // instruction input 指令
 
-    output reg                              branch,         // branch flag
-    output reg                              jump,           // jump flag
+    output reg                              branch,         // branch flag 分支标志
+    output reg                              jump,           // jump flag 跳转标志
     
     // 寄存器控制指令
     output reg                              reg_wen,        // register write enable    写使能
@@ -32,6 +32,7 @@ module ctrl(
     output reg [`ALU_SRC_WIDTH-1:0]         alu_src_sel     // alu source select flag   alu的数据源选择
 );
 
+// 32位的inst分一分
 wire [`OPCODE_WIDTH-1:0]    opcode = inst[`OPCODE_WIDTH-1:0];
 wire [`FUNCT3_WIDTH-1:0]    funct3 = inst[`FUNCT3_WIDTH + `FUNCT3_BASE-1:`FUNCT3_BASE];
 wire [`FUNCT3_WIDTH-1:0]    funct7 = inst[`FUNCT7_WIDTH + `FUNCT7_BASE-1:`FUNCT7_BASE];
@@ -44,18 +45,18 @@ always @(*) begin
     jump                        = 1'b0;
     reg_wen                     = 1'b0;
     // 此处的各初始值分别为：
-    reg1_raddr                  = `REG_ADDR_WIDTH'b0; // 
-    reg2_raddr                  = `REG_ADDR_WIDTH'b0;
-    reg_waddr                   = `REG_ADDR_WIDTH'b0;
-    imm_gen_op                  = `IMM_GEN_I;
-    alu_op                      = `ALU_AND;
-    alu_src_sel                 = `ALU_SRC_REG;
+    reg1_raddr                  = `REG_ADDR_WIDTH'b0;   // 寄存器1的读地址
+    reg2_raddr                  = `REG_ADDR_WIDTH'b0;   // 寄存器2的读地址
+    reg_waddr                   = `REG_ADDR_WIDTH'b0;   // 寄存器的写地址
+    imm_gen_op                  = `IMM_GEN_I;           // 立即数扩展操作码
+    alu_op                      = `ALU_AND;             // alu的操作码  算术单元 逻辑单元
+    alu_src_sel                 = `ALU_SRC_REG;         // alu的数据源选择
     
     case(opcode)
         `INST_TYPE_R:begin
             reg_wen         = 1'b1;
-            reg1_addr       = rs1;
-            reg2_addr       = rs2;
+            reg1_raddr       = rs1;
+            reg2_raddr       = rs2;
             reg_waddr       = rd;
             alu_src_sel     = `ALU_SRC_REG;
             case(funct3)
@@ -65,12 +66,13 @@ always @(*) begin
         end
         `INST_TYPE_I:begin
             reg_wen         = 1'b1;
-            reg1_addr       = rs1;
+            reg1_raddr       = rs1;
             reg_waddr       = rd;
             alu_src_sel     = `ALU_SRC_IMM;
             case(funct3)
                 `INST_ADDI:begin
                     alu_op      = `ALU_ADD;
+                end
             endcase
         end
         `INST_TYPE_B:begin
@@ -79,7 +81,7 @@ always @(*) begin
             imm_gen_op      = `IMM_GEN_B;
             alu_src_sel     = `ALU_SRC_REG;
             case(funct3)
-                `INST_BNE:begin
+                `INST_BNE:begin   // 分支跳转指令
                     branch      = 1'b1; //分支跳转指令->分支跳转信号要拉高
                     alu_op      = `ALU_SUB;
                 end

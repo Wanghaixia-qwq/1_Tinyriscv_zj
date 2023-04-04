@@ -24,13 +24,22 @@ module mux_pc (
     );
 
 always @(*) begin
-    if (~ena) 
-        next_pc = curr_pc;
-    else if (branch && ~zero) // bne
-        next_pc = curr_pc + imm;
-    else if (jump) // jal 
-        next_pc = curr_pc + imm;
-    else 
-        next_pc = curr_pc + `CPU_WIDTH'h4;   
+//    if (~ena) 
+//        next_pc = curr_pc;
+//    else if (branch && ~zero) // bne
+//        next_pc = curr_pc + imm;
+//    else if (jump) // jal 
+//        next_pc = curr_pc + imm;
+//    else 
+//        next_pc = curr_pc + `CPU_WIDTH'h4;   
+
+    // 改为条件判断语句
+    assign next_pc =    (~ena)              ? curr_pc       :
+                        (branch && ~zero)   ? curr_pc + imm :
+                        (jump)              ? curr_pc + imm :
+                        curr_pc + `CPU_WIDTH'h4;
+
+
+
 end
 endmodule
