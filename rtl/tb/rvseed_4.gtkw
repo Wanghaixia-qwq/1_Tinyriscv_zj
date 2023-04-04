@@ -1,0 +1,47 @@
+[*]
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Mon Apr  3 13:05:27 2023
+[*]
+[dumpfile] "/home/eda/Project/1_Tinyriscv_zj/rtl/tb/sim_out.vcd"
+[dumpfile_mtime] "Mon Apr  3 12:59:20 2023"
+[dumpfile_size] 127504
+[savefile] "/home/eda/Project/1_Tinyriscv_zj/rtl/tb/rvseed_4.gtkw"
+[timestart] 0
+[size] 1789 911
+[pos] -1 -1
+*0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb_rvseed.
+[treeopen] tb_rvseed.u_rvseed_0.
+[sst_width] 223
+[signals_width] 158
+[sst_expanded] 1
+[sst_vpaned_height] 261
+@28
+tb_rvseed.u_rvseed_0.clk
+tb_rvseed.u_rvseed_0.rst_n
+tb_rvseed.u_rvseed_0.u_mux_pc_0.ena
+tb_rvseed.u_rvseed_0.u_mux_pc_0.branch
+tb_rvseed.u_rvseed_0.u_mux_pc_0.zero
+tb_rvseed.u_rvseed_0.u_mux_pc_0.jump
+@22
+tb_rvseed.u_rvseed_0.u_mux_pc_0.curr_pc[31:0]
+tb_rvseed.u_rvseed_0.u_mux_pc_0.next_pc[31:0]
+tb_rvseed.u_rvseed_0.u_inst_mem_0.inst[31:0]
+@28
+tb_rvseed.u_rvseed_0.u_ctrl_0.reg_wen
+@22
+tb_rvseed.u_rvseed_0.u_ctrl_0.reg_waddr[4:0]
+tb_rvseed.u_rvseed_0.u_reg_file_0.reg_wdata[31:0]
+tb_rvseed.u_rvseed_0.u_reg_file_0.reg1_raddr[4:0]
+tb_rvseed.u_rvseed_0.u_reg_file_0.reg2_raddr[4:0]
+tb_rvseed.u_rvseed_0.u_reg_file_0.reg1_rdata[31:0]
+tb_rvseed.u_rvseed_0.u_reg_file_0.reg2_rdata[31:0]
+@28
+tb_rvseed.u_rvseed_0.u_imm_gen_0.imm_gen_op[2:0]
+@22
+tb_rvseed.u_rvseed_0.u_imm_gen_0.imm[31:0]
+tb_rvseed.u_rvseed_0.alu_op[3:0]
+@28
+tb_rvseed.u_rvseed_0.alu_src_sel[1:0]
+[pattern_trace] 1
+[pattern_trace] 0
