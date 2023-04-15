@@ -56,7 +56,7 @@ wire [`CPU_WIDTH-1:0] t6_x31   = u_rvseed_0. u_reg_file_0. reg_f[31];
 
 integer r;
 initial begin
-    wait(s10_x26 == 32'b1)   // wait sim end, when x26 == 1,1就代表结束了
+    wait(s10_x26 == 32'b1)   // wait sim end, when x26 == 1
         #(`SIM_PERIOD * 1 + 1)
         if (s11_x27 == 32'b1) begin
             $display("~~~~~~~~~~~~~~~~~~~ %s PASS ~~~~~~~~~~~~~~~~~~~",inst_name);

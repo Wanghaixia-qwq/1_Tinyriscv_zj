@@ -5,7 +5,7 @@
 // Filename      : alu.v
 // Author        : Rongye
 // Created On    : 2022-03-24 23:36
-// Last Modified : 2022-04-14 00:13
+// Last Modified : 2022-04-13 04:05
 // ---------------------------------------------------------------------------------
 // Description   : Only simple operations:
 //                 Integer Arithmetic Operations 
@@ -28,10 +28,44 @@ always @(*) begin
     zero = 1'b0;
     alu_res = `CPU_WIDTH'b0;
     case (alu_op)
-        `ALU_ADD: 
+        `ALU_ADD:begin 
             alu_res = alu_src1 + alu_src2;
+            zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
+        end
         `ALU_SUB:begin 
             alu_res = alu_src1 - alu_src2;
+            zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
+        end
+        `ALU_XOR:begin
+            alu_res = alu_src1 ^ alu_src2;
+            zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
+        end
+        `ALU_OR:begin
+            alu_res = alu_src1 | alu_src2;
+            zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
+        end
+        `ALU_AND:begin
+            alu_res = alu_src1 & alu_src2;
+            zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
+        end
+        `ALU_SLL:begin
+            alu_res = alu_src1 << alu_src2;
+            zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
+        end
+        `ALU_SRL:begin
+            alu_res = alu_src1 >> alu_src2;
+            zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
+        end
+        `ALU_SRA:begin
+            alu_res = alu_src1 >> alu_src2;
+            zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
+        end
+        `ALU_SLT:begin
+            alu_res = (alu_src1 < alu_src2) ? 1 : 0;
+            zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
+        end
+        `ALU_SLTU:begin
+            alu_res = (alu_src1 < alu_src2) ? 1 : 0;
             zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
         end
     endcase

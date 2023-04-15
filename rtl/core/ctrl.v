@@ -59,7 +59,21 @@ always @(*) begin
             alu_src_sel = `ALU_SRC_REG;
             case (funct3)
                 `INST_ADD_SUB: 
-                    alu_op = (funct7 == `FUNCT7_INST_A) ? `ALU_ADD : `ALU_SUB; // A:add B:sub 
+                    alu_op = (funct7 == `FUNCT7_INST_A) ? `ALU_ADD : `ALU_SUB; // A:add B:sub
+                `INST_XOR:
+                    alu_op = `ALU_XOR;
+                `INST_OR:
+                    alu_op = `ALU_OR;
+                `INST_AND:
+                    alu_op = `ALU_AND;
+                `INST_SLL:
+                    alu_op = `ALU_SLL;
+                `INST_SRL_SRA:
+                    alu_op = (funct7 == `FUNCT7_INST_A) ? `ALU_SRL : `ALU_SRA;
+                `INST_SLT:
+                    alu_op = `ALU_SLT;
+                `INST_SLTU:
+                    alu_op = `ALU_SLTU;
             endcase
         end
         `INST_TYPE_I: begin

@@ -5,7 +5,7 @@
 // Filename      : mux_alu.v
 // Author        : Rongye
 // Created On    : 2022-03-25 02:16
-// Last Modified : 2022-04-13 23:58
+// Last Modified : 2022-04-13 04:03
 // ---------------------------------------------------------------------------------
 // Description   : Select the data source of alu.  
 //
@@ -36,6 +36,10 @@ always @(*) begin
         `ALU_SRC_FOUR_PC: begin
             alu_src1 = `CPU_WIDTH'h4; // pc + 4 
             alu_src2 = curr_pc;       //
+        end
+        `ALU_SRC_IMM_PC: begin //select imm and pc
+            alu_src1 = imm;
+            alu_src2 = curr_pc;
         end
     endcase
 end
