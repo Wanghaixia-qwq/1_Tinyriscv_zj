@@ -2,9 +2,10 @@
 
 This project documents the cpu of RISCV designed from 0 to 1.
 
--------2023.4.7---------
+## -------2023.4.7---------
 The first phase of instruction ADD related was successfully completed!
 
-Today is friday!
-Today is Saturday!
+## -------2023.4.15--------
+Add test work related code section!
+            
 
