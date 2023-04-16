@@ -28,10 +28,8 @@ always @(*) begin
     zero = 1'b0;
     alu_res = `CPU_WIDTH'b0;
     case (alu_op)
-        `ALU_ADD:begin 
+        `ALU_ADD: 
             alu_res = alu_src1 + alu_src2;
-            zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
-        end
         `ALU_SUB:begin 
             alu_res = alu_src1 - alu_src2;
             zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
@@ -50,22 +48,6 @@ always @(*) begin
         end
         `ALU_SLL:begin
             alu_res = alu_src1 << alu_src2;
-            zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
-        end
-        `ALU_SRL:begin
-            alu_res = alu_src1 >> alu_src2;
-            zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
-        end
-        `ALU_SRA:begin
-            alu_res = alu_src1 >> alu_src2;
-            zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
-        end
-        `ALU_SLT:begin
-            alu_res = (alu_src1 < alu_src2) ? 1 : 0;
-            zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
-        end
-        `ALU_SLTU:begin
-            alu_res = (alu_src1 < alu_src2) ? 1 : 0;
             zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
         end
     endcase
