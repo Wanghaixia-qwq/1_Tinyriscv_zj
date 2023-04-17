@@ -68,6 +68,12 @@ always @(*) begin
                     alu_op = `ALU_AND;
                 `INST_SLL:
                     alu_op = `ALU_SLL;
+                `INST_SRL_SRA: // 逻辑右移 or 算术右移
+                    alu_op = (funct7 == `FUNCT7_INST_A) ? `ALU_SRL :`ALU_SRA;  // A:srl  B:sra
+                `INST_SLT:
+                    alu_op = `ALU_SLT;
+                `INST_SLTU:
+                    alu_op = `ALU_SLTU;
             endcase
         end
         `INST_TYPE_I: begin

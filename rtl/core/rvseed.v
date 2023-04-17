@@ -115,6 +115,7 @@ alu u_alu_0(
     .alu_op                         ( alu_op                        ),
     .alu_src1                       ( alu_src1                      ),
     .alu_src2                       ( alu_src2                      ),
+    .inst                           ( inst                          ),
     .zero                           ( zero                          ),
     .alu_res                        ( alu_res                       )
 );
