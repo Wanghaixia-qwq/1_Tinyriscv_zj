@@ -25,8 +25,6 @@ module alu(
 );
 
 // Define some mask!
-assign sr_shift = alu_src1 >> alu_src2[4:0];
-assign sr_shift_mask = `CPU_WIDTH'hffffffff >> alu_src2[4:0];
 assign op1_ge_op2_signed = $signed(alu_src1) >= $signed(alu_src2);
 assign op1_ge_op2_unsigned = alu_src1 >= alu_src2;
 
@@ -62,14 +60,7 @@ always @(*) begin
             zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
         end
         `ALU_SRA:begin  // 算术右移
-            
-            if (alu_src1[31] == 1'b1) begin  // 符号位为1
-                alu_res = (sr_shift & sr_shift_mask) | ({32{alu_src1[31]}} & (~sr_shift_mask));
-            end 
-            else begin  // 符号位为0
-                alu_res = alu_src1 >> alu_src2[4:0];
-            end
-            
+            alu_res = ($signed(alu_src1)) >>> alu_src2[4:0]; 
             zero = (alu_res == `CPU_WIDTH'b0) ? 1'b1 : 1'b0;
         end
         `ALU_SLT:begin
