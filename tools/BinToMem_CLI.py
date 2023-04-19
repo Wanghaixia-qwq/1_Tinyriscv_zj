@@ -1,7 +1,6 @@
 import sys
 import os
 
-
 def bin_to_mem(infile, outfile):
     binfile = open(infile, 'rb')
     binfile_content = binfile.read(os.path.getsize(infile))
