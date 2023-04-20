@@ -19,6 +19,7 @@ def main():
         bin_files = list_binfiles(r'../rtl/inst_test') # 存放当前需要测试的所有指令
 
         anyfail = False
+        number = 0
 
         # 对每一个bin文件进行测试
         for file in bin_files:
@@ -29,14 +30,15 @@ def main():
                 r = f.read()
                 f.close()
                 if (r.find('TEST_PASS') != -1):
-                        print(file + '          PASS')
+                        number = number + 1
+                        print(file + '          PASS' + '    ' +  str(number))
                 else:
                         print(file + '          !!!FAIL!!!')
                         anyfail = True
                         break
 
         if (anyfail == False):
-                print('Congratulation, All  PASS!!!...')
+                print("~~~The  number of total insts is  %d, Congratulation, All  PASS~~~" %number)
 
 if __name__ == '__main__':
         sys.exit(main())     
