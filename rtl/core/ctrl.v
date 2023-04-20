@@ -83,7 +83,21 @@ always @(*) begin
             alu_src_sel = `ALU_SRC_IMM;
             case (funct3)
                 `INST_ADDI: 
-                    alu_op = `ALU_ADD; 
+                    alu_op = `ALU_ADD;
+                `INST_XORI:
+                    alu_op = `ALU_XOR;
+                `INST_ORI:
+                    alu_op = `ALU_OR;
+                `INST_ANDI:
+                    alu_op = `ALU_AND;
+                `INST_SLLI:
+                    alu_op = `ALU_SLL;
+                `INST_SRLI_SRAI:
+                    alu_op = (funct7 == `FUNCT7_INST_A) ? `ALU_SRL :`ALU_SRA;  // A:srl  B:sra
+                `INST_SLTI:
+                    alu_op = `ALU_SLT;
+                `INST_SLTIU:
+                    alu_op = `ALU_SLTU;
             endcase
         end
         `INST_TYPE_B: begin
