@@ -11,3 +11,6 @@ Add test work related code section!
 ## -------2023.04.19---------
 Complete python script that to test all instructions at once!
 
+## -------2023.04.21---------
+Complete type R、I instructions successfully.
+
