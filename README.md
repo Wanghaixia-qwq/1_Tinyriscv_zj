@@ -13,7 +13,5 @@ Complete python script that to test all instructions at once!
 
 ## -------2023.04.21---------
 Complete type R、I instructions successfully.
-
-## -------2023.04.22---------
-There is a deviation between the current branch and the upper branch.
+Add new continue function for script instruction test of test_all_inst.py!
 
