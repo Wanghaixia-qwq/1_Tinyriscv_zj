@@ -17,6 +17,8 @@
 
 module ctrl (
     input      [`CPU_WIDTH-1:0]        inst,       // instruction input
+    input      [`CPU_WIDTH-1:0]        reg1_rdata, // register 1 read data
+    input      [`CPU_WIDTH-1:0]        reg2_rdata, // register 2 read data
 
     output reg                         branch,     // branch flag
     output reg                         jump,       // jump flag
@@ -27,7 +29,8 @@ module ctrl (
     output reg [`REG_ADDR_WIDTH-1:0]   reg2_raddr, // register 2 read address
     
     output reg [`IMM_GEN_OP_WIDTH-1:0] imm_gen_op, // immediate extend opcode
-
+    
+    output reg                         zero,
     output reg [`ALU_OP_WIDTH-1:0]     alu_op,     // alu opcode
     output reg [`ALU_SRC_WIDTH-1:0]    alu_src_sel // alu source select flag
 );
@@ -38,6 +41,14 @@ wire [`FUNCT7_WIDTH-1:0] funct7 = inst[`FUNCT7_WIDTH+`FUNCT7_BASE-1:`FUNCT7_BASE
 wire [`REG_ADDR_WIDTH-1:0] rd   = inst[`REG_ADDR_WIDTH+`RD_BASE-1:`RD_BASE]; 
 wire [`REG_ADDR_WIDTH-1:0] rs1  = inst[`REG_ADDR_WIDTH+`RS1_BASE-1:`RS1_BASE]; 
 wire [`REG_ADDR_WIDTH-1:0] rs2  = inst[`REG_ADDR_WIDTH+`RS2_BASE-1:`RS2_BASE]; 
+
+// defines some mask
+// 有符号数比较
+assign op1_ge_op2_signed = $signed(reg1_rdata) >= $signed(reg2_rdata);
+// 无符号数比较
+assign op1_ge_op2_unsigned = reg1_rdata >= reg2_rdata;
+assign op1_eq_op2 = (reg1_rdata == reg2_rdata);
+
 
 
 always @(*) begin
@@ -50,6 +61,7 @@ always @(*) begin
     imm_gen_op  = `IMM_GEN_I;
     alu_op      = `ALU_AND;
     alu_src_sel = `ALU_SRC_REG;
+    zero        = 1'b0;
     case (opcode)
         `INST_TYPE_R: begin
             reg_wen     = 1'b1;
@@ -105,10 +117,31 @@ always @(*) begin
             reg2_raddr  = rs2;
             imm_gen_op  = `IMM_GEN_B;
             alu_src_sel = `ALU_SRC_REG;
+            zero        = 1'b0;
             case (funct3)
+                `INST_BEQ: begin
+                    branch     = 1'b1;
+                    zero = op1_eq_op2;
+                end
                 `INST_BNE: begin
                     branch     = 1'b1;
-                    alu_op     = `ALU_SUB;
+                    zero = ~(op1_eq_op2); // 1'b1
+                end
+                `INST_BLT: begin
+                    branch     = 1'b1;
+                    zero = ~(op1_ge_op2_signed);
+                end
+                `INST_BGE: begin
+                    branch     = 1'b1;
+                    zero = op1_ge_op2_signed;
+                end
+                `INST_BLTU: begin
+                    branch     = 1'b1;
+                    zero = ~(op1_ge_op2_unsigned);
+                end
+                `INST_BGEU: begin
+                    branch     = 1'b1;
+                    zero = op1_ge_op2_unsigned;
                 end
             endcase
         end

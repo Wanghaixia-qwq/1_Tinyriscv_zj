@@ -77,8 +77,11 @@ ctrl u_ctrl_0(
     .reg_wen                        ( reg_wen                       ),
     .reg1_raddr                     ( reg1_raddr                    ),
     .reg2_raddr                     ( reg2_raddr                    ),
+    .reg1_rdata                     ( reg1_rdata                    ),
+    .reg2_rdata                     ( reg2_rdata                    ),
     .reg_waddr                      ( reg_waddr                     ),
     .imm_gen_op                     ( imm_gen_op                    ),
+    .zero                           ( zero                          ),
     .alu_op                         ( alu_op                        ),
     .alu_src_sel                    ( alu_src_sel                   )
 );
@@ -116,7 +119,6 @@ alu u_alu_0(
     .alu_src1                       ( alu_src1                      ),
     .alu_src2                       ( alu_src2                      ),
     .inst                           ( inst                          ),
-    .zero                           ( zero                          ),
     .alu_res                        ( alu_res                       )
 );
 
