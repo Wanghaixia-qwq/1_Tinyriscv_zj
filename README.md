@@ -15,3 +15,6 @@ Complete python script that to test all instructions at once!
 Complete type R、I instructions successfully.<br />
 Add new continue function for script instruction test of test_all_inst.py!
 
+## -------2023.05.04---------
+Complete type B instructions successfully.
+
