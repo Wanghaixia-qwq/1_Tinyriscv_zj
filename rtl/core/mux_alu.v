@@ -35,9 +35,9 @@ always @(*) begin
             alu_src2 = imm;        // select immediate 
         `ALU_SRC_FOUR_PC: begin
             alu_src1 = `CPU_WIDTH'h4; // pc + 4 
-            alu_src2 = curr_pc;       //
+            alu_src2 = curr_pc;       
         end
-        `ALU_SRC_IMM_PC: begin //select imm and pc
+        `ALU_SRC_IMM_PC: begin //select imm and pc  auipc 
             alu_src1 = imm;
             alu_src2 = curr_pc;
         end

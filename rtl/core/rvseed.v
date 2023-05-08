@@ -25,6 +25,7 @@ wire [`CPU_WIDTH-1:0]        next_pc;    // next pc addr
 wire                         branch;     // branch flag
 wire                         zero;       // alu result is zero
 wire                         jump;       // jump flag
+wire                         jalr;       // jalr flag
 
 wire [`CPU_WIDTH-1:0]        inst;       // instruction
 
@@ -60,6 +61,8 @@ mux_pc u_mux_pc_0(
     .branch                         ( branch                        ),
     .zero                           ( zero                          ),
     .jump                           ( jump                          ),
+    .jalr                           ( jalr                          ),
+    .reg1_rdata                     ( reg1_rdata                    ),
     .imm                            ( imm                           ),
     .curr_pc                        ( curr_pc                       ),
     .next_pc                        ( next_pc                       )
@@ -74,6 +77,7 @@ ctrl u_ctrl_0(
     .inst                           ( inst                          ),
     .branch                         ( branch                        ),
     .jump                           ( jump                          ),
+    .jalr                           ( jalr                          ),
     .reg_wen                        ( reg_wen                       ),
     .reg1_raddr                     ( reg1_raddr                    ),
     .reg2_raddr                     ( reg2_raddr                    ),

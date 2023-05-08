@@ -77,7 +77,7 @@ initial begin
     clk       = 1'b0;
     rst_n     = 1'b0;
 
-    inst_name = "BLTU";
+    inst_name = "JALR";
     inst_load(inst_name);
     
     #(`SIM_PERIOD * 1);

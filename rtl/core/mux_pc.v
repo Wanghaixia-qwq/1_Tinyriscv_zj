@@ -17,7 +17,9 @@ module mux_pc (
     input                       ena,
     input                       branch,  // branch type 
     input                       zero,    // alu result is zero
-    input                       jump,    // jump type 
+    input                       jump,    // jump type
+    input                       jalr,    // jalr flag
+    input      [`CPU_WIDTH-1:0] reg1_rdata,
     input      [`CPU_WIDTH-1:0] imm,     // immediate  
     input      [`CPU_WIDTH-1:0] curr_pc, // current pc addr
     output reg [`CPU_WIDTH-1:0] next_pc  // next pc addr
@@ -30,6 +32,8 @@ always @(*) begin
         next_pc = curr_pc + imm;
     else if (jump)            // jal 
         next_pc = curr_pc + imm;
+    else if (jalr)
+        next_pc = reg1_rdata + imm;
     else 
         next_pc = curr_pc + `CPU_WIDTH'h4;   
 end
