@@ -18,3 +18,6 @@ Add new continue function for script instruction test of test_all_inst.py!
 ## -------2023.05.04---------
 Complete type B instructions successfully.
 
+## -------2023.05.08---------
+Complete inst jalr.
+
