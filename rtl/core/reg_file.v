@@ -29,7 +29,7 @@ module reg_file (
     output reg [`CPU_WIDTH-1:0]      reg2_rdata  // register 2 read data
 );
 
-reg [`CPU_WIDTH-1:0] reg_f [0:`REG_DATA_DEPTH-1]; 
+reg [`CPU_WIDTH-1:0] reg_f [0:`REG_DATA_DEPTH-1];// 由REG_DATA_DEPTH个CPU_WIDTH位的reg型变量组成的数组   总共32个寄存器
 
 // register write
 always @(posedge clk or negedge rst_n) begin
