@@ -20,4 +20,4 @@ Complete type B instructions successfully.
 
 ## -------2023.05.08---------
 Complete inst jalr.
-
+至此，基于三级流水线的单周期CPU设计已完成，支持RV32I(除了Load和Store指令)指令集，通过RISC-V指令兼容性测试，基本完成简历项目第一项.
